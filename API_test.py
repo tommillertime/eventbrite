@@ -9,8 +9,6 @@ response = requests.get(
         "Authorization": "Bearer "+EVENTBRITE_TOKEN,
     },
 )
-pprint.pprint(response.json()['events'][5])
-x = 2
 
 results = []
 for i in range(0,5):
