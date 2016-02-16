@@ -1,0 +1,17 @@
+# PyCharm .idea files. 
+.idea/
+
+# Compiled Python
+*.pyc
+
+# Vim
+*.sw?
+
+# Virtualenv
+venv/
+
+# Ignore secrets
+config.py
+
+# Ignore output
+*.csv

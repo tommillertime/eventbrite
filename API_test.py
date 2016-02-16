@@ -1,11 +1,12 @@
 import requests
 import pprint
 import csv
+from config import EVENTBRITE_TOKEN
 
 response = requests.get(
     "https://www.eventbriteapi.com/v3/events/search/?&venue.city=New_York&start_date.range_start=2016-02-22T00:00:00Z&categories=111&expand=venue,category",
     headers = {
-        "Authorization": "Bearer Key",
+        "Authorization": "Bearer "+EVENTBRITE_TOKEN,
     },
 )
 #pprint.pprint(response.json()['events'])
