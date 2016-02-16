@@ -5,7 +5,7 @@ import csv
 response = requests.get(
     "https://www.eventbriteapi.com/v3/events/search/?&venue.city=New_York&start_date.range_start=2016-02-22T00:00:00Z&categories=111&expand=venue,category",
     headers = {
-        "Authorization": "Bearer ORQZ3DG2UZYWRAX77NJW",
+        "Authorization": "Bearer Key",
     },
 )
 #pprint.pprint(response.json()['events'])
