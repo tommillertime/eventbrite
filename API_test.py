@@ -9,20 +9,22 @@ response = requests.get(
         "Authorization": "Bearer "+EVENTBRITE_TOKEN,
     },
 )
-#pprint.pprint(response.json()['events'])
-x = 2
 
+results = []
 for i in range(0,5):
-    name = response.json()['events'][i]['name']['text']
-    url = response.json()['events'][i]['url']
-    venue_long = response.json()['events'][i]['venue']['address']['longitude']
-    ven_long = "{:.9f}".format(venue_long)
-    venue_lat = response.json()['events'][i]['venue']['address']['latitude']
-    start_date = response.json()['events'][i]['start']['local']
+    result = {}
+    result['name'] = response.json()['events'][i]['name']['text']
+    result['url'] = response.json()['events'][i]['url']
+    result['venue_long'] = response.json()['events'][i]['venue']['address']['longitude']
+    result['venue_long'] = "{:.9f}".format(result['venue_long'])
+    result['venue_lat'] = response.json()['events'][i]['venue']['address']['latitude']
+    result['start_date'] = response.json()['events'][i]['start']['local']
+    results.append(result)
 
 
-    with open('eventbrite.csv', 'wb') as csvfile:
-        fieldnames = ['name', 'url', 'venue_long', 'venue_lat', 'start_date']
-        spamwriter = csv.DictWriter(csvfile, fieldnames = fieldnames)
-        spamwriter.writeheader()
-        spamwriter.writerow({'name': name, 'url' : url, 'venue_long': venue_long, 'venue_lat': venue_lat, 'start_date': start_date})
+with open('eventbrite.csv', 'wb') as csvfile:
+    fieldnames = ['name', 'url', 'venue_long', 'venue_lat', 'start_date']
+    spamwriter = csv.DictWriter(csvfile, fieldnames = fieldnames)
+    spamwriter.writeheader()
+    for result in results:
+       spamwriter.writerow(result)
